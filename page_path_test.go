@@ -31,3 +31,17 @@ func TestPage_Extract(t *testing.T) {
 	assert.Equal(t, "xxx=bbb", page.Extract(ElementQuery))
 	assert.Equal(t, "Parse", page.Extract(ElementFragment))
 }
+
+func TestPage_ComparePageWithElements(t *testing.T) {
+	page, err := New("https://pkg.go.dev/net/url?xxx=bbb#Parse")
+	require.NoError(t, err)
+
+	comparisonPage, err := New("https://pkg.go.dev/net/url?xxx=bbb")
+	require.NoError(t, err)
+
+	assert.True(t, page.ComparePageWithElements(comparisonPage, ElementScheme))
+	assert.True(t, page.ComparePageWithElements(comparisonPage, ElementHost))
+	assert.True(t, page.ComparePageWithElements(comparisonPage, ElementPath))
+	assert.True(t, page.ComparePageWithElements(comparisonPage, ElementQuery))
+	assert.False(t, page.ComparePageWithElements(comparisonPage, ElementFragment))
+}

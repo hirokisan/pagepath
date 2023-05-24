@@ -46,6 +46,19 @@ type Page struct {
 	Fragment string
 }
 
+// ComparePageWithElements : For a given Elements, compares whether it matches the given Page
+func (p *Page) ComparePageWithElements(
+	obj Page,
+	elements ...Element,
+) bool {
+	for _, element := range elements {
+		if p.Extract(element) != obj.Extract(element) {
+			return false
+		}
+	}
+	return true
+}
+
 func (p *Page) String() string {
 	if p == nil {
 		return ""
