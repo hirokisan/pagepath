@@ -105,3 +105,15 @@ func New(pagePath string) (Page, error) {
 		Fragment: u.Fragment,
 	}, nil
 }
+
+// Extract : Extracts the specified element from page path
+func Extract(
+	pagePath string,
+	element Element,
+) (string, error) {
+	page, err := New(pagePath)
+	if err != nil {
+		return "", err
+	}
+	return page.Extract(element), nil
+}

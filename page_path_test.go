@@ -45,3 +45,38 @@ func TestPage_ComparePageWithElements(t *testing.T) {
 	assert.True(t, page.ComparePageWithElements(comparisonPage, ElementQuery))
 	assert.False(t, page.ComparePageWithElements(comparisonPage, ElementFragment))
 }
+
+func TestExtract(t *testing.T) {
+	pagePath := "https://pkg.go.dev/net/url?xxx=bbb#Parse"
+
+	cases := []struct {
+		element Element
+		want    string
+	}{
+		{
+			element: ElementScheme,
+			want:    "https",
+		},
+		{
+			element: ElementHost,
+			want:    "pkg.go.dev",
+		},
+		{
+			element: ElementPath,
+			want:    "/net/url",
+		},
+		{
+			element: ElementQuery,
+			want:    "xxx=bbb",
+		},
+		{
+			element: ElementFragment,
+			want:    "Parse",
+		},
+	}
+	for _, c := range cases {
+		got, err := Extract(pagePath, c.element)
+		require.NoError(t, err)
+		assert.Equal(t, c.want, got)
+	}
+}
