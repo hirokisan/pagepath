@@ -5,6 +5,8 @@ import "strings"
 // Matcher : Check the identity between Pages.
 type Matcher struct {
 	ignoreTrailingSlash bool
+
+	prepareFuncs []func(p *Page)
 }
 
 // Compare : For a given Elements, compares whether it matches the pages
@@ -28,6 +30,9 @@ func (m *Matcher) Compare(
 func (m *Matcher) prepare(p Page) Page {
 	if m.ignoreTrailingSlash {
 		p.Path = strings.TrimSuffix(p.Path, "/")
+	}
+	for _, prepareFunc := range m.prepareFuncs {
+		prepareFunc(&p)
 	}
 	return p
 }
