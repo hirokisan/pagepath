@@ -24,7 +24,7 @@ func (m *Matcher) Compare(
 	return true
 }
 
-// prepare : Apply settings to Page
+// prepare : Apply settings to page before compare
 func (m *Matcher) prepare(p Page) Page {
 	if m.ignoreTrailingSlash {
 		p.Path = strings.TrimSuffix(p.Path, "/")
