@@ -1,3 +1,7 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/hirokisan/pagepath)](https://goreportcard.com/report/github.com/hirokisan/pagepath)
+[![golangci-lint](https://github.com/hirokisan/pagepath/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/hirokisan/pagepath/actions/workflows/golangci-lint.yml)
+[![test](https://github.com/hirokisan/pagepath/actions/workflows/test.yml/badge.svg)](https://github.com/hirokisan/pagepath/actions/workflows/test.yml)
+
 # pagepath
 
 `pagepath` is a Golang library for handling and matching page paths.
